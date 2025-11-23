@@ -2,7 +2,7 @@
 
 project ("unitConvertion")
 
-add_executable (unitConvertion "unitConvertion.cpp"   "test.h" )
+add_executable (unitConvertion "unitConvertion.cpp"   "test.h"    "events.h" "switches.cpp")
 
 add_definitions(-D_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING)
 

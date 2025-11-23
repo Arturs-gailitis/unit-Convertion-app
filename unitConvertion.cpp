@@ -3,6 +3,8 @@
 #include <nana/gui/widgets/button.hpp>
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/combox.hpp>
+#include <nana/gui/widgets/textbox.hpp>
+#include "events.h"
 
 using namespace nana;
 
@@ -13,7 +15,7 @@ int main() {
 
 	// Gui window
 	form window;
-	window.caption("Unit Conversion Programm");
+	window.caption("Unit Convertion Programm");
 	window.size({ 475, 500 });
 	window.bgcolor(color_rgb(0xEBDAAC));
 	
@@ -67,80 +69,57 @@ int main() {
 	// Info Part //
 
 	// Brief info title
-	label infoTitle(window, rectangle(200, 80, 150, 30), true);
+	label infoTitle(window, rectangle(200, 80, 150, 30), false);
 	infoTitle.caption("Brief Info");
-	infoTitle.typeface(paint::font("Times New Roman", 16, true));
-	infoTitle.hide();
+	infoTitle.typeface(paint::font("Times New Roman", 16, false));
 
 	// The main goal
-	label mainIdea(window, rectangle(50, 120, 400, 50), true);
+	label mainIdea(window, rectangle(50, 120, 400, 50), false);
 	mainIdea.caption("The main goal of this program is to convert different units of measurement to other units of measurement.");
-	mainIdea.hide();
 
 	// Switching from main part to info part and back
-	infoButton.events().click([&] {
-		if (infoStatuss == false) {
-			infoStatuss = true;
-			welcomeMessage.hide();
-			briefInfo.hide();
-			briefInfo2.hide();
-			mainIdea.show();
-			infoTitle.show();
-			infoButton.caption("Go back to main");
-		} else {
-			infoStatuss = false;
-			welcomeMessage.show();
-			briefInfo.show();
-			briefInfo2.show();
-			mainIdea.hide();
-			infoTitle.hide();
-			infoButton.caption("Click for brief info");
-		}
-	});
+	info(infoButton, infoStatuss, welcomeMessage, briefInfo, briefInfo2, mainIdea, infoTitle);
 
-	// Lenght Part //
+	// Converting Parts //
 
 	// Combo box explaining
-	label choiceLabel(window, rectangle(40, 105, 200, 25), true);
+	label choiceLabel(window, rectangle(40, 155, 200, 25), false);
 	choiceLabel.caption("Choose the conversion type:");
-	choiceLabel.hide();
+
+	// input place for users iven value
+	textbox givenUnit(window, rectangle(200, 200, 150, 25), false);
+
+	// label for input place
+	label unitText(window, rectangle(100, 205, 100, 25), false);
+	unitText.caption("Enter your value:");
+
+	textbox resultUnit(window, rectangle(200, 250, 150, 25), false);
+
+	label resultText(window, rectangle(55, 255, 145, 25), false);
+	resultText.caption("The new converted value:");
+
+	button convert(window, rectangle(185, 300, 110, 30), false);
+	convert.caption("Start Converting");
+	convert.bgcolor(color_rgb(0xE5B940));
+
+	// Lenght part //
+
+	// Convertion lenght mode title
+	label modeTitle(window, rectangle(125, 70, 250, 50), false);
+	modeTitle.caption("Lenght Unit Convertion");
+	modeTitle.typeface(paint::font("Times New Roman", 18, true));
 
 	// Combo box for lenght conversions
-	combox lenghtBox(window, rectangle(200, 100, 150, 25), true);
-	lenghtBox.hide();
+	combox lenghtBox(window, rectangle(200, 150, 160, 25), false);
 	lenghtBox.push_back("Meters to Kilometers");
 	lenghtBox.push_back("Centimeters to Kilometers");
 	lenghtBox.push_back("Millimeters to Kilometers");
 	lenghtBox.push_back("Kilometers to Miles");
 	int choice = lenghtBox.option();
 
-	// Switching to lenght part and back
-	lenght.events().click([&] {
-		if (lenghtStatuss == false) {
-			welcomeMessage.hide();
-			briefInfo.hide();
-			briefInfo2.hide();
-			infoButton.hide();
-			infoTitle.hide();
-			mainIdea.hide();
-			lenghtBox.show();
-			choiceLabel.show();
-			lenghtStatuss = true;
-			lenght.caption("Home");
-		} else {
-			welcomeMessage.show();
-			briefInfo.show();
-			briefInfo2.show();
-			infoButton.show();
-			infoTitle.hide();
-			mainIdea.hide();
-			choiceLabel.hide();
-			lenghtBox.hide();
-			lenghtStatuss = false;
-			lenght.caption("Lenght");
-			infoButton.caption("Click for brief info");
-		}
-	});
+	// Switching to lenght part and home
+	lenghtUnit(lenght, lenghtStatuss, welcomeMessage, briefInfo, briefInfo2, infoButton, infoTitle, mainIdea, lenghtBox, choiceLabel,
+		modeTitle, givenUnit, unitText, resultUnit, resultText, convert);
 
 	window.show();
 	nana::exec();

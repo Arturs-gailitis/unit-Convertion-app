@@ -5,7 +5,7 @@
 #include <nana/gui/widgets/combox.hpp>
 #include <nana/gui/widgets/textbox.hpp>
 #include "info.h"
-#include "lenght.h"
+#include "parts.h"
 
 using namespace nana;
 
@@ -15,7 +15,7 @@ int main() {
 
 	// Gui window
 	form window;
-	window.caption("Unit Convertion Programm");
+	window.caption("Unit Convertion Programm - TEST");
 	window.size({ 475, 500 });
 	window.bgcolor(color_rgb(0xEBDAAC));
 
@@ -103,6 +103,7 @@ int main() {
 	label resultText(window, rectangle(55, 255, 145, 25), false);
 	resultText.caption("The new converted value:");
 
+	// button that goes back to main part
 	button goBack(window, rectangle(185, 400, 110, 30), false);
 	goBack.caption("Go Back");
 	goBack.bgcolor(color_rgb(0xE5B940));
@@ -124,12 +125,49 @@ int main() {
 
 	// Mass part //
 
+	// Combo box for mass conversions
 	combox massBox(window, rectangle(200, 150, 160, 25), false);
 	int massChoice = massBox.option();
 
+	// to convert mass units
 	button convertMass(window, rectangle(185, 300, 110, 30), false);
 	convertMass.caption("Start Converting");
 	convertMass.bgcolor(color_rgb(0xE5B940));
+
+	// Time part //
+
+	// Combo box for time conversions
+	combox timeBox(window, rectangle(200, 150, 160, 25), false);
+	int timeChoice = timeBox.option();
+
+	// to convert time units
+	button convertTime(window, rectangle(185, 300, 110, 30), false);
+	convertTime.caption("Start Converting");
+	convertTime.bgcolor(color_rgb(0xE5B940));
+
+	// Temperature part //
+
+	// Combo box for temperature conversions
+	combox temperatureBox(window, rectangle(200, 150, 160, 25), false);
+	int temperatureChoice = temperatureBox.option();
+
+	// to convert temperature units
+	button convertTemperature(window, rectangle(185, 300, 110, 30), false);
+	convertTemperature.caption("Start Converting");
+	convertTemperature.bgcolor(color_rgb(0xE5B940));
+
+	// Area part //
+
+	// Combo box for area conversions
+	combox areaBox(window, rectangle(200, 150, 160, 25), false);
+	int areaChoice = areaBox.option();
+
+
+	button convertArea(window, rectangle(185, 300, 110, 30), false);
+	convertArea.caption("Start Converting");
+	convertArea.bgcolor(color_rgb(0xE5B940));
+
+	// History part //
 
 	// Part events //
 
@@ -146,27 +184,133 @@ int main() {
 		}
 	});
 
+	// switches to lenght part from main and brief info part or from diffent parts
 	lenght.events().click([&]() {
 		if (infoButton.caption() == "Click for brief info") {
-			switchLenght(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			differntMode(lenghtBox, convertLenght, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
-
+			lenghtTitle(modeTitle);
 		}
-		else {
-			frominfotolenght(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+		else if (infoButton.caption() == "Back to main part") {
+			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = false;
+			differntMode(lenghtBox, convertLenght, statuss);
+			lenghtTitle(modeTitle);
 		}
 	});
 
+	// switches to mass part from main and brief info part
+	mass.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			infoButton.hide();
+			statuss = false;
+			differntMode(massBox, convertMass, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			massTitle(modeTitle);
+		}
+		else if (infoButton.caption() == "Back to main part") {
+			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = false;
+			differntMode(massBox, convertMass, statuss);
+			massTitle(modeTitle);
+		}
+	});
+
+	// switches to time part from main and brief info part
+	time.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			infoButton.hide();
+			statuss = false;
+			differntMode(timeBox, convertTime, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			timeTitle(modeTitle);
+		}
+		else if (infoButton.caption() == "Back to main part") {
+			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = false;
+			differntMode(timeBox, convertTime, statuss);
+			timeTitle(modeTitle);
+		}
+	});
+
+	// switches to time part from main and brief info part
+	temperature.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			infoButton.hide();
+			statuss = false;
+			differntMode(temperatureBox, convertTemperature, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			temperatureTitle(modeTitle);
+		}
+		else if (infoButton.caption() == "Back to main part") {
+			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = false;
+			differntMode(temperatureBox, convertTemperature, statuss);
+			temperatureTitle(modeTitle);
+		}
+	});
+
+	// switches to area part from main and brief info part
+	area.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			infoButton.hide();
+			statuss = false;
+			differntMode(areaBox, convertArea, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			areaTitle(modeTitle);
+		}
+		else if (infoButton.caption() == "Back to main part") {
+			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = false;
+			differntMode(areaBox, convertArea, statuss);
+			areaTitle(modeTitle);
+		}
+	});
+
+	// multiple switches from convertion part to main part
 	goBack.events().click([&]() {
 		if (modeTitle.caption() == "Lenght Convertion Mode") {
-			hideLenght(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			differntMode(lenghtBox, convertLenght, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		
+		}
+		else if (modeTitle.caption() == "Mass Convertion Mode") {
+			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = true;
+			differntMode(massBox, convertMass, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+		else if (modeTitle.caption() == "Time Convertion Mode") {
+			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = true;
+			differntMode(timeBox, convertTime, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+		else if (modeTitle.caption() == "Temperature Convertion Mode") {
+			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = true;
+			differntMode(temperatureBox, convertTemperature, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+		else if (modeTitle.caption() == "Area Convertion Mode") {
+			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
+			statuss = true;
+			differntMode(areaBox, convertArea, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
 	});
+
 	window.show();
-	nana::exec();
+	exec();
+
 	return 0;
 }

@@ -4,26 +4,26 @@
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/combox.hpp>
 #include <nana/gui/widgets/textbox.hpp>
-#include "events.h"
+#include "info.h"
+#include "lenght.h"
 
 using namespace nana;
 
 int main() {
 
-	bool lenghtStatuss = false;
-	bool infoStatuss = false;
+	bool statuss;
 
 	// Gui window
 	form window;
 	window.caption("Unit Convertion Programm");
 	window.size({ 475, 500 });
 	window.bgcolor(color_rgb(0xEBDAAC));
-	
+
 	// Navigation bar
 	panel<false> navbar(window, rectangle(0, 0, 475, 50), true);
 
 	// Buttons for navigating
-	button lenght(navbar, rectangle(5, 5 , 60, 25), true);
+	button lenght(navbar, rectangle(5, 5, 60, 25), true);
 	lenght.caption("Lenght");
 	lenght.bgcolor(color_rgb(0xE5B940));
 
@@ -57,7 +57,7 @@ int main() {
 	// Telling the user where to find brief info
 	label briefInfo(window, rectangle(100, 180, 350, 50), true);
 	briefInfo.caption("Before using this programm check out brief info");
-	
+
 	label briefInfo2(window, rectangle(130, 210, 400, 50), true);
 	briefInfo2.caption("by pressing the button down below.");
 
@@ -78,9 +78,12 @@ int main() {
 	mainIdea.caption("The main goal of this program is to convert different units of measurement to other units of measurement.");
 
 	// Switching from main part to info part and back
-	info(infoButton, infoStatuss, welcomeMessage, briefInfo, briefInfo2, mainIdea, infoTitle);
 
 	// Converting Parts //
+
+	// Convertion lenght mode title
+	label modeTitle(window, rectangle(125, 70, 250, 50), false);
+	modeTitle.typeface(paint::font("Times New Roman", 18, true));
 
 	// Combo box explaining
 	label choiceLabel(window, rectangle(40, 155, 200, 25), false);
@@ -93,21 +96,18 @@ int main() {
 	label unitText(window, rectangle(100, 205, 100, 25), false);
 	unitText.caption("Enter your value:");
 
+	// the user can see the results
 	textbox resultUnit(window, rectangle(200, 250, 150, 25), false);
 
+	// label for the results
 	label resultText(window, rectangle(55, 255, 145, 25), false);
 	resultText.caption("The new converted value:");
 
-	button convert(window, rectangle(185, 300, 110, 30), false);
-	convert.caption("Start Converting");
-	convert.bgcolor(color_rgb(0xE5B940));
+	button goBack(window, rectangle(185, 400, 110, 30), false);
+	goBack.caption("Go Back");
+	goBack.bgcolor(color_rgb(0xE5B940));
 
 	// Lenght part //
-
-	// Convertion lenght mode title
-	label modeTitle(window, rectangle(125, 70, 250, 50), false);
-	modeTitle.caption("Lenght Unit Convertion");
-	modeTitle.typeface(paint::font("Times New Roman", 18, true));
 
 	// Combo box for lenght conversions
 	combox lenghtBox(window, rectangle(200, 150, 160, 25), false);
@@ -115,13 +115,58 @@ int main() {
 	lenghtBox.push_back("Centimeters to Kilometers");
 	lenghtBox.push_back("Millimeters to Kilometers");
 	lenghtBox.push_back("Kilometers to Miles");
-	int choice = lenghtBox.option();
+	int lenghtChoice = lenghtBox.option();
 
-	// Switching to lenght part and home
-	lenghtUnit(lenght, lenghtStatuss, welcomeMessage, briefInfo, briefInfo2, infoButton, infoTitle, mainIdea, lenghtBox, choiceLabel,
-		modeTitle, givenUnit, unitText, resultUnit, resultText, convert);
+	// to convert lenght units
+	button convertLenght(window, rectangle(185, 300, 110, 30), false);
+	convertLenght.caption("Start Converting");
+	convertLenght.bgcolor(color_rgb(0xE5B940));
 
+	// Mass part //
+
+	combox massBox(window, rectangle(200, 150, 160, 25), false);
+	int massChoice = massBox.option();
+
+	button convertMass(window, rectangle(185, 300, 110, 30), false);
+	convertMass.caption("Start Converting");
+	convertMass.bgcolor(color_rgb(0xE5B940));
+
+	// Part events //
+
+	// Switches to brief Info part and back home 
+	infoButton.events().click([&]() {
+
+		changeInfo(infoButton, infoTitle, mainIdea);
+		statuss = false;
+		disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+
+		if (infoButton.caption() == "Click for brief info") {
+			statuss = true;
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+	});
+
+	lenght.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			switchLenght(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+			infoButton.hide();
+			statuss = false;
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+
+		}
+		else {
+			frominfotolenght(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+		}
+	});
+
+	goBack.events().click([&]() {
+		if (modeTitle.caption() == "Lenght Convertion Mode") {
+			hideLenght(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText, lenghtBox);
+			statuss = true;
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+	});
 	window.show();
 	nana::exec();
-    return 0;
+	return 0;
 }

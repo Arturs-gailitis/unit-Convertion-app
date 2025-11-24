@@ -77,8 +77,6 @@ int main() {
 	label mainIdea(window, rectangle(50, 120, 400, 50), false);
 	mainIdea.caption("The main goal of this program is to convert different units of measurement to other units of measurement.");
 
-	// Switching from main part to info part and back
-
 	// Converting Parts //
 
 	// Convertion lenght mode title
@@ -162,7 +160,7 @@ int main() {
 	combox areaBox(window, rectangle(200, 150, 160, 25), false);
 	int areaChoice = areaBox.option();
 
-
+	// to convert area units
 	button convertArea(window, rectangle(185, 300, 110, 30), false);
 	convertArea.caption("Start Converting");
 	convertArea.bgcolor(color_rgb(0xE5B940));

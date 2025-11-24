@@ -1,5 +1,6 @@
 #include "info.h"
 
+// Switches between info and main part
 void changeInfo(button& button, label& infoTitle, label& mainIdea) {
 	button.show();
 	
@@ -16,6 +17,7 @@ void changeInfo(button& button, label& infoTitle, label& mainIdea) {
 
 }
 
+// Hides and shows main part
 void disapierInfo(label& welcomeMessage, label& briefInfo, label& briefInfo2, bool& statuss, button& infoButton) {
 	if (statuss == false) {
 		welcomeMessage.hide();

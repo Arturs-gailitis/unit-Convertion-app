@@ -1,9 +1,11 @@
 #include "parts.h"
 
+// Change the lenght mode tittle
 void lenghtTitle(label& modeTittle) {
 	modeTittle.caption("Lenght Convertion Mode");
 }
 
+// Changes the invisibility for different mode
 void differntMode(combox& lenghtBox, button& convert, bool& statuss) {
 	if (statuss == false) {
 		lenghtBox.show();
@@ -15,6 +17,7 @@ void differntMode(combox& lenghtBox, button& convert, bool& statuss) {
 	}
 }
 
+// Changes the visibility for default elements in converting mode 
 void switchModes(label& modeTitle, label& choiceLabel, textbox& givenUnit, textbox& resultUnit, label& resultText, button& goBack, label& unitText) {
 	modeTitle.show();
 
@@ -26,6 +29,7 @@ void switchModes(label& modeTitle, label& choiceLabel, textbox& givenUnit, textb
 	goBack.show();
 }
 
+// Hides the default elements in converting mode
 void hideModes(label& modeTitle, label& choiceLabel, textbox& givenUnit, textbox& resultUnit, label& resultText, button& goBack, 
 	label& unitText) {
 	modeTitle.hide();
@@ -37,6 +41,7 @@ void hideModes(label& modeTitle, label& choiceLabel, textbox& givenUnit, textbox
 	unitText.hide();
 }
 
+// chnages from info to converting mode
 void frominfotoModes( label& infoTitle, label& mainIdea, button& infoButton, label& modeTitle, label& choiceLabel, textbox& givenUnit, 
 	textbox& resultUnit, label& resultText, button& goBack, label& unitText) {
 	infoTitle.hide();
@@ -46,18 +51,22 @@ void frominfotoModes( label& infoTitle, label& mainIdea, button& infoButton, lab
 	switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 }
 
+// Change the mass mode tittle
 void massTitle(label& modeTittle) {
 	modeTittle.caption("Mass Convertion Mode");
 }
 
+// Change the time mode tittle
 void timeTitle(label& modeTittle) {
 	modeTittle.caption("Time Convertion Mode");
 }
 
+// Change the temperature mode tittle
 void temperatureTitle(label& modeTittle) {
 	modeTittle.caption("Temperature Convertion Mode");
 }
 
+// Change the area mode tittle
 void areaTitle(label& modeTittle) {
 	modeTittle.caption("Area Convertion Mode");
 }

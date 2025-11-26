@@ -2,7 +2,7 @@
 
 project ("unitConvertion")
 
-add_executable (unitConvertion "unitConvertion.cpp"   "test.h"        "info.h" "info.cpp" "parts.h" "parts.cpp")
+add_executable (unitConvertion "unitConvertion.cpp"   "test.h"        "info.h" "info.cpp" "parts.h" "parts.cpp" "math.h" "math.cpp")
 
 add_definitions(-D_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING)
 

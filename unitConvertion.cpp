@@ -4,8 +4,10 @@
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/combox.hpp>
 #include <nana/gui/widgets/textbox.hpp>
+#include <string>
 #include "info.h"
 #include "parts.h"
+#include "math.h"
 
 using namespace nana;
 
@@ -116,7 +118,6 @@ int main() {
 	lenghtBox.push_back("Centimeters to Kilometers");
 	lenghtBox.push_back("Kilometers to Meters");
 	lenghtBox.push_back("Kilometers to Centimeters");
-	int lenghtChoice = lenghtBox.option();
 
 	// to convert lenght units
 	button convertLenght(window, rectangle(165, 300, 140, 30), false);
@@ -193,7 +194,7 @@ int main() {
 
 	// History part //
 
-	// Part events //
+	// Switching different parts events //
 
 	// Switches to brief Info part and back home 
 	infoButton.events().click([&]() {
@@ -345,6 +346,14 @@ int main() {
 			differntMode(areaBox, convertArea, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
+	});
+
+	// Converting events //
+
+	// When pressing convert lenght button the event is started
+	convertLenght.events().click([&]() {
+		int lenghtChoice = lenghtBox.option();
+		convertLenghtEvent(lenghtChoice, givenUnit, resultUnit);
 	});
 
 	window.show();

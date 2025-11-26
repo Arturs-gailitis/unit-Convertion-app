@@ -71,6 +71,7 @@ void areaTitle(label& modeTittle) {
 	modeTittle.caption("Area Convertion Mode");
 }
 
+// Hides and shows the navigation bar based on differnt modes
 void navChange(panel<false>& nav, bool& statuss ) {
 	if (statuss == false) {
 		nav.hide();

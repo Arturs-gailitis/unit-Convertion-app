@@ -111,58 +111,84 @@ int main() {
 	// Combo box for lenght conversions
 	combox lenghtBox(window, rectangle(200, 150, 160, 25), false);
 	lenghtBox.push_back("Meters to Kilometers");
+	lenghtBox.push_back("Meters to Centimeters");
+	lenghtBox.push_back("Centimeters to Meters");
 	lenghtBox.push_back("Centimeters to Kilometers");
-	lenghtBox.push_back("Millimeters to Kilometers");
-	lenghtBox.push_back("Kilometers to Miles");
+	lenghtBox.push_back("Kilometers to Meters");
+	lenghtBox.push_back("Kilometers to Centimeters");
 	int lenghtChoice = lenghtBox.option();
 
 	// to convert lenght units
-	button convertLenght(window, rectangle(185, 300, 110, 30), false);
-	convertLenght.caption("Start Converting");
+	button convertLenght(window, rectangle(165, 300, 140, 30), false);
+	convertLenght.caption("Start Converting Lenght");
 	convertLenght.bgcolor(color_rgb(0xE5B940));
 
 	// Mass part //
 
 	// Combo box for mass conversions
 	combox massBox(window, rectangle(200, 150, 160, 25), false);
+	massBox.push_back("Grams to Kilograms");
+	massBox.push_back("Grams to Tons");
+	massBox.push_back("Kilograms to Tons");
+	massBox.push_back("Kilograms to Grams");
+	massBox.push_back("Tons to Kilograms");
+	massBox.push_back("Tons to Grams");
 	int massChoice = massBox.option();
 
 	// to convert mass units
-	button convertMass(window, rectangle(185, 300, 110, 30), false);
-	convertMass.caption("Start Converting");
+	button convertMass(window, rectangle(175, 300, 135, 30), false);
+	convertMass.caption("Start Converting Mass");
 	convertMass.bgcolor(color_rgb(0xE5B940));
 
 	// Time part //
 
 	// Combo box for time conversions
 	combox timeBox(window, rectangle(200, 150, 160, 25), false);
+	timeBox.push_back("Seconds to Minutes");
+	timeBox.push_back("Seconds to Hours");
+	timeBox.push_back("Minutes to Hours");
+	timeBox.push_back("Minutes to Seconds");
+	timeBox.push_back("Hours to Minutes");
+	timeBox.push_back("Hours to Seconds");
 	int timeChoice = timeBox.option();
 
 	// to convert time units
-	button convertTime(window, rectangle(185, 300, 110, 30), false);
-	convertTime.caption("Start Converting");
+	button convertTime(window, rectangle(175, 300, 135, 30), false);
+	convertTime.caption("Start Converting Time");
 	convertTime.bgcolor(color_rgb(0xE5B940));
 
 	// Temperature part //
 
 	// Combo box for temperature conversions
 	combox temperatureBox(window, rectangle(200, 150, 160, 25), false);
+	temperatureBox.push_back("Celsius to Fahrenheit");
+	temperatureBox.push_back("Celsius to Kelvin");
+	temperatureBox.push_back("Fahrenheit to Celsius");
+	temperatureBox.push_back("Fahrenheit to Kelvin");
+	temperatureBox.push_back("Kelvin to Celsius");
+	temperatureBox.push_back("Kelvin to Fahrenheit");
 	int temperatureChoice = temperatureBox.option();
 
 	// to convert temperature units
-	button convertTemperature(window, rectangle(185, 300, 110, 30), false);
-	convertTemperature.caption("Start Converting");
+	button convertTemperature(window, rectangle(155, 300, 170, 30), false);
+	convertTemperature.caption("Start Converting Temperature");
 	convertTemperature.bgcolor(color_rgb(0xE5B940));
 
 	// Area part //
 
 	// Combo box for area conversions
-	combox areaBox(window, rectangle(200, 150, 160, 25), false);
+	combox areaBox(window, rectangle(200, 150, 210, 25), false);
+	areaBox.push_back("Square Meters to Square Kilometers");
+	areaBox.push_back("Square Meters to Hectars");
+	areaBox.push_back("Square Kilometers to Square Meters");
+	areaBox.push_back("Square Kilometers to Hectars");
+	areaBox.push_back("Hectars to Square Meters");
+	areaBox.push_back("Hectars to Square Kilometers");
 	int areaChoice = areaBox.option();
 
 	// to convert area units
-	button convertArea(window, rectangle(185, 300, 110, 30), false);
-	convertArea.caption("Start Converting");
+	button convertArea(window, rectangle(175, 300, 135, 30), false);
+	convertArea.caption("Start Converting Area");
 	convertArea.bgcolor(color_rgb(0xE5B940));
 
 	// History part //

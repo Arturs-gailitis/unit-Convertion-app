@@ -19,3 +19,17 @@ void kmToM(int, string&);
 void kmToCm(int, string&);
 
 void convertLenghtEvent(int&, textbox&, textbox&);
+
+void gToKg(int, string&);
+
+void gToT(int, string&);
+
+void kgToT(int, string&);
+
+void kgToG(int, string&);
+
+void tToKg(int, string&);
+
+void tToG(int, string&);
+
+void convertMassEvent(int&, textbox&, textbox&);

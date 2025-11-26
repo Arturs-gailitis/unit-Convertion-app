@@ -10,14 +10,27 @@ void convertToString(int number, int fraction, string& text, int constNumber) {
 
 		double fractionNumber = (double) fraction / constNumber;
 		int remainderDivisor = 10;
+		
+		int standartNumber = 10;
+		int secondStandartNumber = standartNumber * standartNumber;
+		int thirdStandartNumber = secondStandartNumber * standartNumber;
+		int fourthStandartNumber = thirdStandartNumber * standartNumber;
+		int fithStandartNumber = fourthStandartNumber * standartNumber;
+		int sixStandartNumber = fithStandartNumber * standartNumber;
 
-		int firstNumber = (int) (fractionNumber * 10);
-		int secondNumber = (int) (fractionNumber * 100);
-		int thirdNumber = (int) (fractionNumber * 1000);
-		int fourthNumber = (int) (fractionNumber * 10000);
-		int fithNumber = (int) (fractionNumber * 100000);
+		int firstNumber = (int) (fractionNumber * standartNumber);
+		int secondNumber = (int)(fractionNumber * secondStandartNumber);
+		int thirdNumber = (int) (fractionNumber * thirdStandartNumber);
+		int fourthNumber = (int) (fractionNumber * fourthStandartNumber);
+		int fithNumber = (int) (fractionNumber * fithStandartNumber);
+		int sixNumber = (int) (fractionNumber * sixStandartNumber);
 
-		if ((fithNumber % remainderDivisor) > 0) {
+		if ((sixNumber % remainderDivisor) > 0) {
+			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
+				to_string(thirdNumber % remainderDivisor) + to_string(fourthNumber % remainderDivisor) + to_string(fithNumber % remainderDivisor) + 
+				to_string(sixNumber % remainderDivisor);
+		}
+		else if ((fithNumber % remainderDivisor) > 0) {
 			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) + 
 				to_string(thirdNumber % remainderDivisor) + to_string(fourthNumber % remainderDivisor) + to_string(fithNumber % remainderDivisor);
 		}
@@ -36,8 +49,9 @@ void convertToString(int number, int fraction, string& text, int constNumber) {
 			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor);
 		}
 	}
-
 }
+
+// Lenght //
 
 // Convert meters to kilometers
 void mToKm(int meters, string& kilometers) {
@@ -106,6 +120,80 @@ void convertLenghtEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
 	}
 	else if (option == 5) {
 		kmToCm(number, text);
+	}
+
+	resultUnit.reset(text);
+}
+
+// Mass //
+
+// Converts grams to kilograms
+void gToKg(int grams, string& kilograms) {
+	int constNumber = 1000;
+	int kg = grams / constNumber;
+	int kgDouble = grams % constNumber;
+	convertToString(kg, kgDouble, kilograms, constNumber);
+}
+
+// Converts grams to tons
+void gToT(int grams, string& tons) {
+	int constNumber = 1000000;
+	int t = grams / constNumber;
+	int tDouble = grams % constNumber;
+	convertToString(t, tDouble, tons, constNumber);
+}
+
+// Converts kilograms to tons
+void kgToT(int kilograms, string& tons) {
+	int constNumber = 1000;
+	int t = kilograms / constNumber;
+	int tDouble = kilograms % constNumber;
+	convertToString(t, tDouble, tons, constNumber);
+}
+
+// Converts kilograms to grams
+void kgToG(int kilograms, string& grams) {
+	int constNumber = 1000;
+	int g = kilograms * constNumber;
+	convertToString(g, 0, grams, constNumber);
+}
+
+// Converts tons to kilograms
+void tToKg(int tons, string& kilograms) {
+	int constNumber = 1000;
+	int kg = tons * constNumber;
+	convertToString(kg, 0, kilograms, constNumber);
+}
+
+// Converts tons to grams
+void tToG(int tons, string& grams) {
+	int constNumber = 1000000;
+	int g = tons * constNumber;
+	convertToString(g, 0, grams, constNumber);
+}
+
+// Extracts given mass value and returns converted value based of given option
+void convertMassEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
+	string text = givenUnit.text();
+	int number = stoi(text);
+
+	if (option == 0) {
+		gToKg(number, text);
+	}
+	else if (option == 1) {
+		gToT(number, text);
+	}
+	else if (option == 2) {
+		kgToT(number, text);
+	}
+	else if (option == 3) {
+		kgToG(number, text);
+	}
+	else if (option == 4) {
+		tToKg(number, text);
+	}
+	else if (option == 5) {
+		tToG(number, text);
 	}
 
 	resultUnit.reset(text);

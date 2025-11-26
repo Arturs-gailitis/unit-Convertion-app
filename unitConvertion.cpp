@@ -134,7 +134,6 @@ int main() {
 	massBox.push_back("Kilograms to Grams");
 	massBox.push_back("Tons to Kilograms");
 	massBox.push_back("Tons to Grams");
-	int massChoice = massBox.option();
 
 	// to convert mass units
 	button convertMass(window, rectangle(175, 300, 135, 30), false);
@@ -354,6 +353,12 @@ int main() {
 	convertLenght.events().click([&]() {
 		int lenghtChoice = lenghtBox.option();
 		convertLenghtEvent(lenghtChoice, givenUnit, resultUnit);
+	});
+
+	// When pressing convert mass button the event is started
+	convertMass.events().click([&]() {
+		int massChoice = massBox.option();
+		convertMassEvent(massChoice, givenUnit, resultUnit);
 	});
 
 	window.show();

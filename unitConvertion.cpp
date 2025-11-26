@@ -182,12 +182,13 @@ int main() {
 		}
 	});
 
-	// switches to lenght part from main and brief info part or from diffent parts
+	// switches to lenght part from main and brief info part
 	lenght.events().click([&]() {
 		if (infoButton.caption() == "Click for brief info") {
 			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(lenghtBox, convertLenght, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			lenghtTitle(modeTitle);
@@ -195,6 +196,7 @@ int main() {
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(lenghtBox, convertLenght, statuss);
 			lenghtTitle(modeTitle);
 		}
@@ -206,6 +208,7 @@ int main() {
 			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(massBox, convertMass, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			massTitle(modeTitle);
@@ -213,6 +216,7 @@ int main() {
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(massBox, convertMass, statuss);
 			massTitle(modeTitle);
 		}
@@ -224,6 +228,7 @@ int main() {
 			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(timeBox, convertTime, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			timeTitle(modeTitle);
@@ -231,6 +236,7 @@ int main() {
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(timeBox, convertTime, statuss);
 			timeTitle(modeTitle);
 		}
@@ -242,6 +248,7 @@ int main() {
 			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(temperatureBox, convertTemperature, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			temperatureTitle(modeTitle);
@@ -249,6 +256,7 @@ int main() {
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(temperatureBox, convertTemperature, statuss);
 			temperatureTitle(modeTitle);
 		}
@@ -260,6 +268,7 @@ int main() {
 			switchModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			infoButton.hide();
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(areaBox, convertArea, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			areaTitle(modeTitle);
@@ -267,6 +276,7 @@ int main() {
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = false;
+			navChange(navbar, statuss);
 			differntMode(areaBox, convertArea, statuss);
 			areaTitle(modeTitle);
 		}
@@ -277,31 +287,35 @@ int main() {
 		if (modeTitle.caption() == "Lenght Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			navChange(navbar, statuss);
 			differntMode(lenghtBox, convertLenght, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
-		
 		}
 		else if (modeTitle.caption() == "Mass Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			navChange(navbar, statuss);
 			differntMode(massBox, convertMass, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
 		else if (modeTitle.caption() == "Time Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			navChange(navbar, statuss);
 			differntMode(timeBox, convertTime, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
 		else if (modeTitle.caption() == "Temperature Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			navChange(navbar, statuss);
 			differntMode(temperatureBox, convertTemperature, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
 		else if (modeTitle.caption() == "Area Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
+			navChange(navbar, statuss);
 			differntMode(areaBox, convertArea, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}

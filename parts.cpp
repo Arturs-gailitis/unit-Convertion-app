@@ -70,3 +70,13 @@ void temperatureTitle(label& modeTittle) {
 void areaTitle(label& modeTittle) {
 	modeTittle.caption("Area Convertion Mode");
 }
+
+void navChange(panel<false>& nav, bool& statuss ) {
+	if (statuss == false) {
+		nav.hide();
+	
+	}
+	else {
+		nav.show();
+	}
+}

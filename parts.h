@@ -2,6 +2,7 @@
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/textbox.hpp>
 #include <nana/gui/widgets/combox.hpp>
+#include <nana/gui/widgets/panel.hpp>
 
 using namespace nana;
 
@@ -22,3 +23,5 @@ void timeTitle(label&);
 void temperatureTitle(label&);
 
 void areaTitle(label&);
+
+void navChange(panel<false>&, bool&);

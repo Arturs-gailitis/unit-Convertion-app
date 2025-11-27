@@ -61,3 +61,17 @@ void kToC(int, string&);
 void kToF(int, string&);
 
 void convertTemperatureEvent(int&, textbox&, textbox&);
+
+void sqmToSqkm(int, string&);
+
+void sqmToHa(int, string&);
+
+void sqkmToSqm(int, string&);
+
+void sqkmToHa(int, string&);
+
+void haToSqm(int, string&);
+
+void haToSqkm(int, string&);
+
+void convertAreaEvent(int&, textbox&, textbox&);

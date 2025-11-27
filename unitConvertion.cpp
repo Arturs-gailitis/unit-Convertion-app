@@ -182,7 +182,6 @@ int main() {
 	areaBox.push_back("Square Kilometers to Hectars");
 	areaBox.push_back("Hectars to Square Meters");
 	areaBox.push_back("Hectars to Square Kilometers");
-	int areaChoice = areaBox.option();
 
 	// to convert area units
 	button convertArea(window, rectangle(175, 300, 135, 30), false);
@@ -369,6 +368,12 @@ int main() {
 	convertTemperature.events().click([&]() {
 		int temperatureChoice = temperatureBox.option();
 		convertTemperatureEvent(temperatureChoice, givenUnit, resultUnit);
+	});
+
+	// When pressing convert area button the event is started
+	convertArea.events().click([&]() {
+		int areaChoice = areaBox.option();
+		convertAreaEvent(areaChoice, givenUnit, resultUnit);
 	});
 
 	window.show();

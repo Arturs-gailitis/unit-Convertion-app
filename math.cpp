@@ -5,7 +5,7 @@ void convertToString(int number, int fraction, string& text, int constNumber) {
 
 	string negative = "-";
 
-	if (number > 0 || fraction > 0) {
+	if (number >= 0 || fraction >= 0) {
 		negative = "";
 	}
 
@@ -359,6 +359,80 @@ void convertTemperatureEvent(int& option, textbox& givenUnit, textbox& resultUni
 	}
 	else if (option == 5) {
 		kToF(number, text);
+	}
+
+	resultUnit.reset(text);
+}
+
+// Area //
+
+// Converts Square Meters to Square Kilometers
+void sqmToSqkm(int sqMeters, string& sqKilometers) {
+	int constNumber = 1000000;
+	int sqkm = sqMeters / constNumber;
+	int sqkmDouble = sqMeters % constNumber;
+	convertToString(sqkm, sqkmDouble, sqKilometers, constNumber);
+}
+
+// Converts Square Meters to Hectars
+void sqmToHa(int sqMeters, string& hectars) {
+	int constNumber = 10000;
+	int ha = sqMeters / constNumber;
+	int haDouble = sqMeters % constNumber;
+	convertToString(ha, haDouble, hectars, constNumber);
+}
+
+// Converts Square Kilometers to Square Meters
+void sqkmToSqm(int sqKilometers, string& sqMeters) {
+	int constNumber = 1000000;
+	int sqm = sqKilometers * constNumber;
+	convertToString(sqm, 0, sqMeters, constNumber);
+}
+
+// Converts Square Kilometers to Hectars
+void sqkmToHa(int sqKilometers, string& hectars) {
+	int constNumber = 100;
+	int ha = sqKilometers * constNumber;
+	convertToString(ha, 0, hectars, constNumber);
+}
+
+// Converts Hectars to Square Meters
+void haToSqm(int hectars, string& sqMeters) {
+	int constNumber = 10000;
+	int sqm = hectars * constNumber;
+	convertToString(sqm, 0, sqMeters, constNumber);
+}
+
+// Hectars to Square Kilometers
+void haToSqkm(int hectars, string& sqKilometers) {
+	int constNumber = 100;
+	int sqkm = hectars / constNumber;
+	int sqkmDouble = hectars % constNumber;
+	convertToString(sqkm, sqkmDouble, sqKilometers, constNumber);
+}
+
+// Extracts given area value and returns converted value based of given option
+void convertAreaEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
+	string text = givenUnit.text();
+	int number = stoi(text);
+
+	if (option == 0) {
+		sqmToSqkm(number, text);
+	}
+	else if (option == 1) {
+		sqmToHa(number, text);
+	}
+	else if (option == 2) {
+		sqkmToSqm(number, text);
+	}
+	else if (option == 3) {
+		sqkmToHa(number, text);
+	}
+	else if (option == 4) {
+		haToSqm(number, text);
+	}
+	else if (option == 5) {
+		haToSqkm(number, text);
 	}
 
 	resultUnit.reset(text);

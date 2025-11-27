@@ -3,12 +3,20 @@
 // Change datatype from int to string
 void convertToString(int number, int fraction, string& text, int constNumber) {
 
-	if (fraction == 0) {
-		text = to_string(number);
+	string negative = "-";
+
+	if (number > 0 || fraction > 0) {
+		negative = "";
+	}
+
+	number = abs(number);
+
+	if (abs(fraction) == 0) {
+		text = negative + to_string(number);
 	}
 	else {
 
-		double fractionNumber = (double) fraction / constNumber;
+		double fractionNumber = (double) abs(fraction) / constNumber;
 		int remainderDivisor = 10;
 		
 		int standartNumber = 10;
@@ -26,27 +34,27 @@ void convertToString(int number, int fraction, string& text, int constNumber) {
 		int sixNumber = (int) (fractionNumber * sixStandartNumber);
 
 		if ((sixNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
 				to_string(thirdNumber % remainderDivisor) + to_string(fourthNumber % remainderDivisor) + to_string(fithNumber % remainderDivisor) + 
 				to_string(sixNumber % remainderDivisor);
 		}
 		else if ((fithNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) + 
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
 				to_string(thirdNumber % remainderDivisor) + to_string(fourthNumber % remainderDivisor) + to_string(fithNumber % remainderDivisor);
 		}
 		else if ((fourthNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) + 
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
 				to_string(thirdNumber % remainderDivisor) + to_string(fourthNumber % remainderDivisor);
 		}
 		else if ((thirdNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) + 
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor) +
 				to_string(thirdNumber % remainderDivisor);
 		}
 		else if ((secondNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor);
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor) + to_string(secondNumber % remainderDivisor);
 		}
 		else if ((firstNumber % remainderDivisor) > 0) {
-			text = to_string(number) + "," + to_string(firstNumber % remainderDivisor);
+			text = negative + to_string(number) + "," + to_string(firstNumber % remainderDivisor);
 		}
 	}
 }
@@ -268,6 +276,89 @@ void convertTimeEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
 	}
 	else if (option == 5) {
 		hToS(number, text);
+	}
+
+	resultUnit.reset(text);
+}
+
+// Temperature //
+
+// Converts Celsius to Fahrenheit
+void ctoF(int celsius, string& fahrenheit) {
+	int constNumber = 100;
+	double f = (double) (celsius * (9.0 / 5.0)) + 32;
+	int fwhole = (int) f;
+	int fDouble = (int) round(((f - fwhole) * constNumber));
+	convertToString(fwhole, fDouble, fahrenheit, constNumber);
+}
+
+// Converts Celsius to Kelvin
+void cToK(int celsius, string& kelvin) {
+	int constNumber = 100;
+	double k = (double) (celsius + 273.15);
+	int kWhole = (int) k;
+	int kDouble = (int) round(((k - kWhole) * constNumber));
+	convertToString(kWhole, kDouble, kelvin, constNumber);
+}
+
+// Converts Fahrenheit to Celsius
+void fToC(int fahrenheit, string& celsius) {
+	int constNumber = 100;
+	double c = (double) (fahrenheit - 32) * (5.0 / 9.0);
+	int cwhole = (int) c;
+	int cDouble = (int) round((c - cwhole) * constNumber);
+	convertToString(cwhole, cDouble, celsius, constNumber);
+}
+
+// Converts Fahrenheit to Kelvin
+void fToK(int fahrenheit, string& kelvin) {
+	int constNumber = 100;
+	double k = (double) (fahrenheit - 32) * (5.0 / 9.0) + 273.15;
+	int kwhole = (int) k;
+	int kDouble = (int) round((k - kwhole) * constNumber);
+	convertToString(kwhole, kDouble, kelvin, constNumber);
+}
+
+// Converts Kelvin to Celsius
+void kToC(int kelvin, string& celsius) {
+	int constNumber = 100;
+	double c = (double) (kelvin - 273.15);
+	int cwhole = (int) c;
+	int cDouble = (int) round((c - cwhole) * constNumber);
+	convertToString(cwhole, cDouble, celsius, constNumber);
+}
+
+// Converts Kelvin to Fahrenheit
+void kToF(int kelvin, string& fahrenheit) {
+	int constNumber = 100;
+	double f = (double) (kelvin - 273.15) * (9.0 / 5.0) + 32;
+	int fwhole = (int) f;
+	int fDouble = (int) round((f - fwhole) * constNumber);
+	convertToString(fwhole, fDouble, fahrenheit, constNumber);
+}
+
+// Extracts given temperature value and returns converted value based of given option
+void convertTemperatureEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
+	string text = givenUnit.text();
+	int number = stoi(text);
+
+	if (option == 0) {
+		ctoF(number, text);
+	}
+	else if (option == 1) {
+		cToK(number, text);
+	}
+	else if (option == 2) {
+		fToC(number, text);
+	}
+	else if (option == 3) {
+		fToK(number, text);
+	}
+	else if (option == 4) {
+		kToC(number, text);
+	}
+	else if (option == 5) {
+		kToF(number, text);
 	}
 
 	resultUnit.reset(text);

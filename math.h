@@ -47,3 +47,17 @@ void hToMin(int, string&);
 void hToS(int, string&);
 
 void convertTimeEvent(int&, textbox&, textbox&);
+
+void ctoF(int, string&);
+
+void cToK(int, string&);
+
+void fToC(int, string&);
+
+void fToK(int, string&);
+
+void kToC(int, string&);
+
+void kToF(int, string&);
+
+void convertTemperatureEvent(int&, textbox&, textbox&);

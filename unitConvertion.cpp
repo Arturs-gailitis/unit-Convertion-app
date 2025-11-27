@@ -166,7 +166,6 @@ int main() {
 	temperatureBox.push_back("Fahrenheit to Kelvin");
 	temperatureBox.push_back("Kelvin to Celsius");
 	temperatureBox.push_back("Kelvin to Fahrenheit");
-	int temperatureChoice = temperatureBox.option();
 
 	// to convert temperature units
 	button convertTemperature(window, rectangle(155, 300, 170, 30), false);
@@ -364,6 +363,12 @@ int main() {
 	convertTime.events().click([&]() {
 		int timeChoice = timeBox.option();
 		convertTimeEvent(timeChoice, givenUnit, resultUnit);
+	});
+
+	// When pressing convert temperature button the event is started
+	convertTemperature.events().click([&]() {
+		int temperatureChoice = temperatureBox.option();
+		convertTemperatureEvent(temperatureChoice, givenUnit, resultUnit);
 	});
 
 	window.show();

@@ -198,3 +198,77 @@ void convertMassEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
 
 	resultUnit.reset(text);
 }
+
+// Time //
+
+// Converts seconds to minutes
+void sToMin(int seconds, string& minutes) {
+	int constNumber = 60;
+	int min = seconds / constNumber;
+	int minDouble = seconds % constNumber;
+	convertToString(min, minDouble, minutes, constNumber);
+}
+
+// Converts seconds to hours
+void sToH(int seconds, string& hours) {
+	int constNumber = 3600;
+	int h = seconds / constNumber;
+	int hDouble = seconds % constNumber;
+	convertToString(h, hDouble, hours, constNumber);
+}
+
+// Converts minutes to hours
+void minToH(int minutes, string& hours) {
+	int constNumber = 60;
+	int h = minutes / constNumber;
+	int hDouble = minutes % constNumber;
+	convertToString(h, hDouble, hours, constNumber);
+}
+
+// Converts minutes to seconds
+void minToS(int minutes, string& seconds) {
+	int constNumber = 60;
+	int s = minutes * constNumber;
+	convertToString(s, 0, seconds, constNumber);
+}
+
+// Converts hours to minutes
+void hToMin(int hours, string& minutes) {
+	int constNumber = 60;
+	int min = hours * constNumber;
+	convertToString(min, 0, minutes, constNumber);
+}
+
+// Converts hours to seconds
+void hToS(int hours, string& seconds) {
+	int constNumber = 3600;
+	int s = hours * constNumber;
+	convertToString(s, 0, seconds, constNumber);
+}
+
+// Extracts given time value and returns converted value based of given option
+void convertTimeEvent(int& option, textbox& givenUnit, textbox& resultUnit) {
+	string text = givenUnit.text();
+	int number = stoi(text);
+
+	if (option == 0) {
+		sToMin(number, text);
+	}
+	else if (option == 1) {
+		sToH(number, text);
+	}
+	else if (option == 2) {
+		minToH(number, text);
+	}
+	else if (option == 3) {
+		minToS(number, text);
+	}
+	else if (option == 4) {
+		hToMin(number, text);
+	}
+	else if (option == 5) {
+		hToS(number, text);
+	}
+
+	resultUnit.reset(text);
+}

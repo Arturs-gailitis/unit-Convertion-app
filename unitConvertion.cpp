@@ -150,7 +150,6 @@ int main() {
 	timeBox.push_back("Minutes to Seconds");
 	timeBox.push_back("Hours to Minutes");
 	timeBox.push_back("Hours to Seconds");
-	int timeChoice = timeBox.option();
 
 	// to convert time units
 	button convertTime(window, rectangle(175, 300, 135, 30), false);
@@ -359,6 +358,12 @@ int main() {
 	convertMass.events().click([&]() {
 		int massChoice = massBox.option();
 		convertMassEvent(massChoice, givenUnit, resultUnit);
+	});
+
+	// When pressing convert time button the event is started
+	convertTime.events().click([&]() {
+		int timeChoice = timeBox.option();
+		convertTimeEvent(timeChoice, givenUnit, resultUnit);
 	});
 
 	window.show();

@@ -33,3 +33,17 @@ void tToKg(int, string&);
 void tToG(int, string&);
 
 void convertMassEvent(int&, textbox&, textbox&);
+
+void sToMin(int, string&);
+
+void sToH(int, string&);
+
+void minToH(int, string&);
+
+void minToS(int, string&);
+
+void hToMin(int, string&);
+
+void hToS(int, string&);
+
+void convertTimeEvent(int&, textbox&, textbox&);

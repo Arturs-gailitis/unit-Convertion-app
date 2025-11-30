@@ -4,10 +4,12 @@
 #include <nana/gui/widgets/label.hpp>
 #include <nana/gui/widgets/combox.hpp>
 #include <nana/gui/widgets/textbox.hpp>
+#include <nana/gui/widgets/listbox.hpp>
 #include <string>
 #include "info.h"
 #include "parts.h"
 #include "math.h"
+#include "database.h"
 
 using namespace nana;
 
@@ -190,6 +192,12 @@ int main() {
 
 	// History part //
 
+	// List element for history of convertion
+	listbox convertHistury(window, rectangle(50, 150, 370, 200), false);
+	convertHistury.append_header("Given unit");
+	convertHistury.append_header("Convertion");
+	convertHistury.append_header("Result");
+
 	// Switching different parts events //
 
 	// Switches to brief Info part and back home 
@@ -305,6 +313,27 @@ int main() {
 		}
 	});
 
+	// switches to history part from main and brief info part
+	history.events().click([&]() {
+		if (infoButton.caption() == "Click for brief info") {
+			infoButton.hide();
+			statuss = false;
+			navChange(navbar, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			statuss = true;
+			switchHistory(modeTitle, goBack, convertHistury, statuss);
+			historyTitle(modeTitle);
+		}
+		else if (infoButton.caption() == "Back to main part") {
+			changeFromInfo(infoTitle, mainIdea, infoButton);
+			statuss = false;
+			navChange(navbar, statuss);
+			statuss = true;
+			switchHistory(modeTitle, goBack, convertHistury, statuss);
+			historyTitle(modeTitle);
+		}
+	});
+
 	// multiple switches from convertion part to main part
 	goBack.events().click([&]() {
 		if (modeTitle.caption() == "Lenght Convertion Mode") {
@@ -340,6 +369,13 @@ int main() {
 			statuss = true;
 			navChange(navbar, statuss);
 			differntMode(areaBox, convertArea, statuss);
+			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		}
+		else if (modeTitle.caption() == "History Mode") {
+			statuss = false;
+			switchHistory(modeTitle, goBack, convertHistury, statuss);
+			statuss = true;
+			navChange(navbar, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 		}
 	});

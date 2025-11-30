@@ -23,6 +23,9 @@ int main() {
 	window.size({ 475, 500 });
 	window.bgcolor(color_rgb(0xEBDAAC));
 
+	// Resets database table
+	newTable();
+
 	// Navigation bar
 	panel<false> navbar(window, rectangle(0, 0, 475, 50), true);
 
@@ -194,8 +197,8 @@ int main() {
 
 	// List element for history of convertion
 	listbox convertHistury(window, rectangle(50, 150, 370, 200), false);
-	convertHistury.append_header("Given unit");
-	convertHistury.append_header("Convertion");
+	convertHistury.append_header("Given unit", 90);
+	convertHistury.append_header("Convertion", 150);
 	convertHistury.append_header("Result");
 
 	// Switching different parts events //
@@ -323,6 +326,7 @@ int main() {
 			statuss = true;
 			switchHistory(modeTitle, goBack, convertHistury, statuss);
 			historyTitle(modeTitle);
+			selectValues(convertHistury);
 		}
 		else if (infoButton.caption() == "Back to main part") {
 			changeFromInfo(infoTitle, mainIdea, infoButton);
@@ -331,6 +335,7 @@ int main() {
 			statuss = true;
 			switchHistory(modeTitle, goBack, convertHistury, statuss);
 			historyTitle(modeTitle);
+			selectValues(convertHistury);
 		}
 	});
 

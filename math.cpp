@@ -1,4 +1,5 @@
 #include "math.h"
+#include "database.h"
 
 // Change datatype from int to string
 void convertToString(int number, int fraction, string& text, int constNumber) {
@@ -67,6 +68,7 @@ void mToKm(int meters, string& kilometers) {
 	int km = meters / constNumber;
 	int kmDouble = meters % constNumber;
 	convertToString(km, kmDouble, kilometers, constNumber);
+	insertValues(meters, "Meters to Kilometers", kilometers);
 }
 
 // Convert meters to centimeters
@@ -74,6 +76,7 @@ void mToCm(int meters, string& centimeters) {
 	int constNumber = 100;
 	int cm = meters * constNumber;
 	convertToString(cm, 0, centimeters, constNumber);
+	insertValues(meters, "Meters to Centimeters", centimeters);
 }
 
 // Convert centimeters to meters
@@ -82,6 +85,7 @@ void cmToM(int centimeters, string& meters) {
 	int m = centimeters / constNumber;
 	int metersDouble = centimeters % constNumber;
 	convertToString(m, metersDouble, meters, constNumber);
+	insertValues(centimeters, "Centimeters to Meters", meters);
 }
 
 // Convert centimeters to kilometers 
@@ -90,6 +94,7 @@ void cmToKm(int centimeters, string& kilometers) {
 	int km = centimeters / constNumber;
 	int kmDouble = centimeters % constNumber;
 	convertToString(km, kmDouble, kilometers, constNumber);
+	insertValues(centimeters, "Centimeters to Kilometers", kilometers);
 }
 
 // Convert kilometers to meters
@@ -97,6 +102,7 @@ void kmToM(int kilometers, string& meters) {
 	int constNumber = 1000;
 	int m = kilometers * constNumber;
 	convertToString(m, 0, meters, constNumber);
+	insertValues(kilometers, "Kilometers to Meters", meters);
 }
 
 // Convert kilometers to centimeters
@@ -104,6 +110,7 @@ void kmToCm(int kilometers, string& centimeters) {
 	int constNumber = 100000;
 	int cm = kilometers * constNumber;
 	convertToString(cm, 0, centimeters, constNumber);
+	insertValues(kilometers, "Kilometers to Centimeters", centimeters);
 }
 
 // Extracts given lenght value and returns converted value based of given option
@@ -141,6 +148,7 @@ void gToKg(int grams, string& kilograms) {
 	int kg = grams / constNumber;
 	int kgDouble = grams % constNumber;
 	convertToString(kg, kgDouble, kilograms, constNumber);
+	insertValues(grams, "Grams to Kilograms", kilograms);
 }
 
 // Converts grams to tons
@@ -149,6 +157,7 @@ void gToT(int grams, string& tons) {
 	int t = grams / constNumber;
 	int tDouble = grams % constNumber;
 	convertToString(t, tDouble, tons, constNumber);
+	insertValues(grams, "Grams to Tons", tons);
 }
 
 // Converts kilograms to tons
@@ -157,6 +166,7 @@ void kgToT(int kilograms, string& tons) {
 	int t = kilograms / constNumber;
 	int tDouble = kilograms % constNumber;
 	convertToString(t, tDouble, tons, constNumber);
+	insertValues(kilograms, "Kilograms to Tons", tons);
 }
 
 // Converts kilograms to grams
@@ -164,6 +174,7 @@ void kgToG(int kilograms, string& grams) {
 	int constNumber = 1000;
 	int g = kilograms * constNumber;
 	convertToString(g, 0, grams, constNumber);
+	insertValues(kilograms, "Kilograms to Grams", grams);
 }
 
 // Converts tons to kilograms
@@ -171,6 +182,7 @@ void tToKg(int tons, string& kilograms) {
 	int constNumber = 1000;
 	int kg = tons * constNumber;
 	convertToString(kg, 0, kilograms, constNumber);
+	insertValues(tons, "Tons to Kilograms", kilograms);
 }
 
 // Converts tons to grams
@@ -178,6 +190,7 @@ void tToG(int tons, string& grams) {
 	int constNumber = 1000000;
 	int g = tons * constNumber;
 	convertToString(g, 0, grams, constNumber);
+	insertValues(tons, "Tons to Grams", grams);
 }
 
 // Extracts given mass value and returns converted value based of given option
@@ -215,6 +228,7 @@ void sToMin(int seconds, string& minutes) {
 	int min = seconds / constNumber;
 	int minDouble = seconds % constNumber;
 	convertToString(min, minDouble, minutes, constNumber);
+	insertValues(seconds, "Seconds to Minutes", minutes);
 }
 
 // Converts seconds to hours
@@ -223,6 +237,7 @@ void sToH(int seconds, string& hours) {
 	int h = seconds / constNumber;
 	int hDouble = seconds % constNumber;
 	convertToString(h, hDouble, hours, constNumber);
+	insertValues(seconds, "Seconds to Hours", hours);
 }
 
 // Converts minutes to hours
@@ -231,6 +246,7 @@ void minToH(int minutes, string& hours) {
 	int h = minutes / constNumber;
 	int hDouble = minutes % constNumber;
 	convertToString(h, hDouble, hours, constNumber);
+	insertValues(minutes, "Minutes to Hours", hours);
 }
 
 // Converts minutes to seconds
@@ -238,6 +254,7 @@ void minToS(int minutes, string& seconds) {
 	int constNumber = 60;
 	int s = minutes * constNumber;
 	convertToString(s, 0, seconds, constNumber);
+	insertValues(minutes, "Minutes to Seconds", seconds);
 }
 
 // Converts hours to minutes
@@ -245,6 +262,7 @@ void hToMin(int hours, string& minutes) {
 	int constNumber = 60;
 	int min = hours * constNumber;
 	convertToString(min, 0, minutes, constNumber);
+	insertValues(hours, "Hours to Minutes", minutes);
 }
 
 // Converts hours to seconds
@@ -252,6 +270,7 @@ void hToS(int hours, string& seconds) {
 	int constNumber = 3600;
 	int s = hours * constNumber;
 	convertToString(s, 0, seconds, constNumber);
+	insertValues(hours, "Hours to Seconds", seconds);
 }
 
 // Extracts given time value and returns converted value based of given option
@@ -290,6 +309,7 @@ void ctoF(int celsius, string& fahrenheit) {
 	int fwhole = (int) f;
 	int fDouble = (int) round(((f - fwhole) * constNumber));
 	convertToString(fwhole, fDouble, fahrenheit, constNumber);
+	insertValues(celsius, "Celsius to Fahrenheit", fahrenheit);
 }
 
 // Converts Celsius to Kelvin
@@ -299,6 +319,7 @@ void cToK(int celsius, string& kelvin) {
 	int kWhole = (int) k;
 	int kDouble = (int) round(((k - kWhole) * constNumber));
 	convertToString(kWhole, kDouble, kelvin, constNumber);
+	insertValues(celsius, "Celsius to Kelvin", kelvin);
 }
 
 // Converts Fahrenheit to Celsius
@@ -308,6 +329,7 @@ void fToC(int fahrenheit, string& celsius) {
 	int cwhole = (int) c;
 	int cDouble = (int) round((c - cwhole) * constNumber);
 	convertToString(cwhole, cDouble, celsius, constNumber);
+	insertValues(fahrenheit, "Fahrenheit to Celsius", celsius);
 }
 
 // Converts Fahrenheit to Kelvin
@@ -317,6 +339,7 @@ void fToK(int fahrenheit, string& kelvin) {
 	int kwhole = (int) k;
 	int kDouble = (int) round((k - kwhole) * constNumber);
 	convertToString(kwhole, kDouble, kelvin, constNumber);
+	insertValues(fahrenheit, "Fahrenheit to Kelvin", kelvin);
 }
 
 // Converts Kelvin to Celsius
@@ -326,6 +349,7 @@ void kToC(int kelvin, string& celsius) {
 	int cwhole = (int) c;
 	int cDouble = (int) round((c - cwhole) * constNumber);
 	convertToString(cwhole, cDouble, celsius, constNumber);
+	insertValues(kelvin, "Kelvin to Celsius", celsius);
 }
 
 // Converts Kelvin to Fahrenheit
@@ -335,6 +359,7 @@ void kToF(int kelvin, string& fahrenheit) {
 	int fwhole = (int) f;
 	int fDouble = (int) round((f - fwhole) * constNumber);
 	convertToString(fwhole, fDouble, fahrenheit, constNumber);
+	insertValues(kelvin, "Kelvin to Fahrenheit", fahrenheit);
 }
 
 // Extracts given temperature value and returns converted value based of given option
@@ -372,6 +397,7 @@ void sqmToSqkm(int sqMeters, string& sqKilometers) {
 	int sqkm = sqMeters / constNumber;
 	int sqkmDouble = sqMeters % constNumber;
 	convertToString(sqkm, sqkmDouble, sqKilometers, constNumber);
+	insertValues(sqMeters, "Square Meters to Square Kilometers", sqKilometers);
 }
 
 // Converts Square Meters to Hectars
@@ -380,6 +406,7 @@ void sqmToHa(int sqMeters, string& hectars) {
 	int ha = sqMeters / constNumber;
 	int haDouble = sqMeters % constNumber;
 	convertToString(ha, haDouble, hectars, constNumber);
+	insertValues(sqMeters, "Square Meters to Hectars", hectars);
 }
 
 // Converts Square Kilometers to Square Meters
@@ -387,6 +414,7 @@ void sqkmToSqm(int sqKilometers, string& sqMeters) {
 	int constNumber = 1000000;
 	int sqm = sqKilometers * constNumber;
 	convertToString(sqm, 0, sqMeters, constNumber);
+	insertValues(sqKilometers, "Square Kilometers to Square Meters", sqMeters);
 }
 
 // Converts Square Kilometers to Hectars
@@ -394,6 +422,7 @@ void sqkmToHa(int sqKilometers, string& hectars) {
 	int constNumber = 100;
 	int ha = sqKilometers * constNumber;
 	convertToString(ha, 0, hectars, constNumber);
+	insertValues(sqKilometers, "Square Kilometers to Hectars", hectars);
 }
 
 // Converts Hectars to Square Meters
@@ -401,14 +430,16 @@ void haToSqm(int hectars, string& sqMeters) {
 	int constNumber = 10000;
 	int sqm = hectars * constNumber;
 	convertToString(sqm, 0, sqMeters, constNumber);
+	insertValues(hectars, "Hectars to Square Meters", sqMeters);
 }
 
-// Hectars to Square Kilometers
+// Converts Hectars to Square Kilometers
 void haToSqkm(int hectars, string& sqKilometers) {
 	int constNumber = 100;
 	int sqkm = hectars / constNumber;
 	int sqkmDouble = hectars % constNumber;
 	convertToString(sqkm, sqkmDouble, sqKilometers, constNumber);
+	insertValues(hectars, "Hectars to Square Kilometers", sqKilometers);
 }
 
 // Extracts given area value and returns converted value based of given option

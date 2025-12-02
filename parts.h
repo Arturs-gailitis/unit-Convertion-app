@@ -25,3 +25,5 @@ void temperatureTitle(label&);
 void areaTitle(label&);
 
 void navChange(panel<false>&, bool&);
+
+void cleanFields(textbox&, textbox&);

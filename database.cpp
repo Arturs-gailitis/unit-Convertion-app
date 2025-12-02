@@ -26,6 +26,7 @@ void changeFromInfo(label& infoTitle, label& mainIdea, button& infoButton) {
 	infoButton.hide();
 }
 
+// ------------ When writing this code snippet I looked at this source - https://github.com/SRombauts/SQLiteCpp ------------ 
 // get connection to local database
 auto getConnection() {
 	Database db("History.db", OPEN_READWRITE | OPEN_CREATE);
@@ -64,3 +65,4 @@ void selectValues(listbox& convertHistury) {
 		listCat.append({ givenNr, convertion, result });
 	}
 }
+// ------------ Code snippet ends ------------

@@ -19,7 +19,7 @@ int main() {
 
 	// Gui window
 	form window;
-	window.caption("Unit Convertion Programm - TEST");
+	window.caption("Unit Convertion Programm");
 	window.size({ 475, 500 });
 	window.bgcolor(color_rgb(0xEBDAAC));
 
@@ -81,13 +81,20 @@ int main() {
 	infoTitle.typeface(paint::font("Times New Roman", 16, false));
 
 	// The main goal
-	label mainIdea(window, rectangle(50, 120, 400, 50), false);
-	mainIdea.caption("The main goal of this program is to convert different units of measurement to other units of measurement.");
+	label mainIdea(window, rectangle(50, 120, 400, 180), false);
+	mainIdea.caption("The main goal of this program is to convert different units of measurement to other units of measurement.\n\n"
+		"In this programm you can convert:\n"
+		"   1. Lenght (meters, centimeters, kilometers);\n"
+	    "   2. Mass (grams, kilograms, metric tons);\n"
+	    "   3. Time (seconds, minutes, hours);\n"
+	    "   4. Temperature (celsius, fahrenheit, kelvin);\n"
+	    "   5. Area (square meters, square kilometers, hectars).\n\n"
+	    "Also there is a button - Convertion History witch stores convertion history during this session.");
 
 	// Converting Parts //
 
 	// Convertion lenght mode title
-	label modeTitle(window, rectangle(125, 70, 250, 50), false);
+	label modeTitle(window, rectangle(125, 70, 300, 50), false);
 	modeTitle.typeface(paint::font("Times New Roman", 18, true));
 
 	// Combo box explaining
@@ -209,10 +216,12 @@ int main() {
 		changeInfo(infoButton, infoTitle, mainIdea);
 		statuss = false;
 		disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+		infoButton.move(160, 350);
 
 		if (infoButton.caption() == "Click for brief info") {
 			statuss = true;
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			infoButton.move(160, 250);
 		}
 	});
 
@@ -286,6 +295,7 @@ int main() {
 			differntMode(temperatureBox, convertTemperature, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
 			temperatureTitle(modeTitle);
+			modeTitle.move(100, 70);
 		}
 		else if (infoButton.caption() == "Back to main part") {
 			frominfotoModes(infoTitle, mainIdea, infoButton, modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
@@ -293,6 +303,7 @@ int main() {
 			navChange(navbar, statuss);
 			differntMode(temperatureBox, convertTemperature, statuss);
 			temperatureTitle(modeTitle);
+			modeTitle.move(100, 70);
 		}
 	});
 
@@ -327,6 +338,7 @@ int main() {
 			switchHistory(modeTitle, goBack, convertHistury, statuss);
 			historyTitle(modeTitle);
 			selectValues(convertHistury);
+			modeTitle.move(170, 70);
 		}
 		else if (infoButton.caption() == "Back to main part") {
 			changeFromInfo(infoTitle, mainIdea, infoButton);
@@ -336,11 +348,14 @@ int main() {
 			switchHistory(modeTitle, goBack, convertHistury, statuss);
 			historyTitle(modeTitle);
 			selectValues(convertHistury);
+			modeTitle.move(170, 70);
 		}
 	});
 
 	// multiple switches from convertion part to main part
 	goBack.events().click([&]() {
+		cleanFields(givenUnit, resultUnit);
+
 		if (modeTitle.caption() == "Lenght Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
 			statuss = true;
@@ -368,6 +383,7 @@ int main() {
 			navChange(navbar, statuss);
 			differntMode(temperatureBox, convertTemperature, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			modeTitle.move(125, 70);
 		}
 		else if (modeTitle.caption() == "Area Convertion Mode") {
 			hideModes(modeTitle, choiceLabel, givenUnit, resultUnit, resultText, goBack, unitText);
@@ -382,6 +398,7 @@ int main() {
 			statuss = true;
 			navChange(navbar, statuss);
 			disapierInfo(welcomeMessage, briefInfo, briefInfo2, statuss, infoButton);
+			modeTitle.move(125, 70);
 		}
 	});
 

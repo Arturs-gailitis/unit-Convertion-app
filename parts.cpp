@@ -81,3 +81,9 @@ void navChange(panel<false>& nav, bool& statuss ) {
 		nav.show();
 	}
 }
+
+// Clean textboxes if exiting from modes
+void cleanFields(textbox& givenUnit, textbox& resultUnit) {
+	givenUnit.reset("");
+	resultUnit.reset("");
+}
